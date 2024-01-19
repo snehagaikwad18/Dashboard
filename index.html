@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <title>Document</title>
+
+
+    <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+    <script type='text/javascript'>
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        google.charts.setOnLoadCallback(drawTrendlines);
+
+        function drawTrendlines() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('timeofday', 'Time of Day');
+            data.addColumn('number', 'Motivation Level');
+            data.addColumn('number', 'Energy Level');
+
+            data.addRows([
+                [{ v: [8, 0, 0], f: '8 am' }, 1, .25],
+                [{ v: [9, 0, 0], f: '9 am' }, 2, .5],
+                [{ v: [10, 0, 0], f: '10 am' }, 3, 1],
+                [{ v: [11, 0, 0], f: '11 am' }, 4, 2.25],
+                [{ v: [12, 0, 0], f: '12 pm' }, 5, 2.25],
+                [{ v: [13, 0, 0], f: '1 pm' }, 6, 3],
+                [{ v: [14, 0, 0], f: '2 pm' }, 7, 4],
+                [{ v: [15, 0, 0], f: '3 pm' }, 8, 5.25],
+                [{ v: [16, 0, 0], f: '4 pm' }, 9, 7.5],
+                [{ v: [17, 0, 0], f: '5 pm' }, 10, 10],
+            ]);
+
+            var options = {
+                title: 'Motivation and Energy Level Throughout the Day',
+                trendlines: {
+                    0: { type: 'linear', lineWidth: 5, opacity: .3 },
+                    1: { type: 'exponential', lineWidth: 10, opacity: .3 }
+                },
+                hAxis: {
+                    title: 'Time of Day',
+                    format: 'h:mm a',
+                    viewWindow: {
+                        min: [7, 30, 0],
+                        max: [17, 30, 0]
+                    }
+                },
+                vAxis: {
+                    title: 'Rating (scale of 1-10)'
+                }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            position: relative;
+        }
+
+        body {
+            background-color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            background-color: #FFF;
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            /* Set the height to 100% of the viewport height */
+            align-items: center;
+            justify-content: space-between;
+            /* width: 100%; */
+        }
+
+        .sidebar {
+            width: 300px;
+            height: 100%;
+            text-align: center;
+            border-right: 3px solid #d7d3d3;
+            /* background-color: blue; */
+            /* background-color: black; */
+        }
+
+        .sidebar-div-2 {
+            display: flex;
+            flex-direction: column;
+            padding-left: 10px;
+            gap: 30px;
+        }
+
+        .graph {
+            height: 50%;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 10px;
+            padding-right: 10PX;
+            padding-top: 10px;
+        }
+
+        .do-dont {
+            /* padding-left: 10px;
+            padding-right: 10px; */
+            width: 95%;
+            gap: 3%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            /* background-color: red; */
+
+        }
+
+        .do {
+            border-top: 7px solid #d7d3d3;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            padding-top: 10px;
+            align-items: center;
+            width: 100%;
+            /* padding-left: 25px;
+            padding-right: 25px; */
+
+        }
+
+        .middle-section {
+            width: 100%;
+            height: 100%;
+            /* background-color: black; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          
+        }
+
+        .Last-section {
+            width: 330px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding-left: 5px;
+            padding-right: 5px;
+            gap: 20px;
+        }
+
+        .last-first-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            /* padding-bottom: 100px; */
+        }
+
+
+
+        @media only screen and (max-width: 768px) {
+            .container {
+                /* position: fixed; */
+                flex-direction: column;
+                height: auto;
+                gap: 10px;
+                /* align-items: center;
+                justify-content: start; */
+                padding-left:5px;
+                padding-right: 10px;
+            }
+
+            .sidebar {
+                position: fixed;
+                width: 100%;
+                height: 50px;
+                /* background-color: black; */
+                bottom: 0;
+                display: flex;
+                border: 0px;
+
+                /* background-color:black; */
+            }
+
+            .sidebar h1 {
+                display: none;
+            }
+
+            .sidebar-div-2 span {
+                display: none;
+            }
+
+            .sidebar-div-2 {
+                /* position: sticky;            */
+                flex-direction: row;
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                background-color: white;
+            }
+
+            .graph {
+                width: 100%;
+                height: 100%;
+                
+            }
+
+            .do-dont {
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+                /* background-color: black; */
+                width: 100%;
+                /* padding-left: 10px; */
+
+            }
+
+            .do {
+                width: 100%;
+              
+
+            }
+
+            .Last-section {
+                padding-bottom: 80px;
+                width: 100%;
+                font-size: 80%;
+                /* background-color: black; */
+
+            }
+
+            /* .content{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 200%;
+                background-color: black;
+            } */
+        }
+
+
+
+        /* .mobile-container {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+            }
+        } */
+
+        #check1,
+        #check2,
+        #check3,
+        #check4,
+        #check5,
+        #check6,
+        #check7 {
+            /* pointer-events: none; */
+            width: 13px;
+            height: 13px;
+        }
+
+        label {
+            font-weight: 700;
+            color: #9b9797;
+            cursor: pointer;
+        }
+
+        i {
+            color: black;
+            font-size: 20px;
+        }
+
+        #check1:checked #check2:checked #check3:checked #check4:checked #check5:checked #check6:checked {
+            accent-color: rgb(79, 45, 218);
+        }
+
+        #check1:checked+label,
+        #check2:checked+label,
+        #check3:checked+label,
+        #check4:checked+label,
+        #check5:checked+label,
+        #check6:checked+label {
+            color: black;
+
+        }
+
+
+
+        .do i {
+            color: #9b9797;
+        }
+
+
+
+        
+    </style>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawVisualization);
+
+        function drawVisualization() {
+            // Some raw data (not necessarily accurate)
+            var data = google.visualization.arrayToDataTable([
+                ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
+                ['2004/05', 165, 938, 522, 998, 450, 614.6],
+                ['2005/06', 135, 1120, 599, 1268, 288, 682],
+                ['2006/07', 157, 1167, 587, 807, 397, 623],
+                ['2007/08', 139, 1110, 615, 968, 215, 609.4],
+                ['2008/09', 136, 691, 629, 1026, 366, 569.6]
+            ]);
+
+            var options = {
+                title: 'Monthly Coffee Production by Country',
+                vAxis: { title: 'Cups' },
+                hAxis: { title: 'Month' },
+                seriesType: 'bars',
+                series: { 5: { type: 'line' } }
+            };
+
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- <div class="nav">
+        
+        <img src="https://img.freepik.com/free-vector/colorful-bird-illustration-gradient_343694-1741.jpg?w=740&t=st=1705592839~exp=1705593439~hmac=ab576e801a1b3e6d3d2fc38d73ca45052f5e1ed9e5cc808c0b4855e72dc879bb"
+                style="height: 100px; width: 150px; "
+                alt="">
+    </div> -->
+
+
+    <div class="container">
+
+        <div class="sidebar">
+            <div class="">
+                <h1 style="border-bottom: 2px solid #d7d3d3; padding-bottom: 20px;">HORIZON UI</h1>
+            </div>
+            <div class="sidebar-div-2">
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content:start; gap: 10px;">
+                    <i class="fa-solid fa-house"></i><span>Dashboard</span>
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content:start; gap: 10px;">
+                    <i class="fa-solid fa-cart-shopping"></i><span>NFT Marketplace</span>
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content:start; gap: 10px;">
+                    <i class="fa-solid fa-chart-simple"></i><span>Tables</span>
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content:start; gap: 10px;">
+                    <i class="fa-solid fa-user"></i><span>Profle</span>
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content:start; gap: 10px;">
+                    <i class="fa-solid fa-user"></i><span>Signin</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="middle-section">
+            <div class="graph">
+                <div id="chart_div" style="width: 800px; height: 300px;  "></div>
+            </div>
+            <div class="do-dont">
+                <div class="do">
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check1" type="checkbox">
+                            <label for="check">Tasks</label>
+                        </div>
+
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check2" type="checkbox">
+                            <label for="check">Landing Page Design</label>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check3" type="checkbox">
+                            <label for="check">Dashboard Builder</label>
+                        </div>
+                        <i class="fa-solid fa-braille"></i>
+                    </div>
+
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check4" type="checkbox">
+                            <label for="check">Mobile App Design</label>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+
+
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check5" type="checkbox">
+                            <label for="check">Illustation</label>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+
+
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check6" type="checkbox">
+                            <label for="check">promotional LP</label>
+                        </div>
+                        <i class="fa-solid fa-braille"></i>
+                    </div>
+                </div>
+
+                <div class="do">
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check1" type="checkbox">
+                            <label for="check">Tasks</label>
+                        </div>
+
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check2" type="checkbox">
+                            <label for="check">Landing Page Design</label>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check3" type="checkbox">
+                            <label for="check">Dashboard Builder</label>
+                        </div>
+                        <i class="fa-solid fa-braille"></i>
+                    </div>
+
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check4" type="checkbox">
+                            <label for="check">Mobile App Design</label>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+
+
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check5" type="checkbox">
+                            <label for="check">Illustation</label>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+
+
+                    <div class=" "
+                        style=" gap: 10px; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <div class="" style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+                            <input id="check6" type="checkbox">
+                            <label for="check">promotional LP</label>
+                        </div>
+                        <i class="fa-solid fa-braille"></i>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+        <div class="Last-section">
+            <div class="last-first-section">
+                <div class=""
+                    style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                    <h2>Lessions</h2>
+                    <h4>View All</h4>
+                </div>
+
+                <div
+                    style="gap: 5px; display: flex; flex-direction: column; border-left: solid 6px orangered; border-radius: 7px; padding-left: 5px; padding-right: 5px; ">
+                    <div class="">
+                        <h2 style="line-height: 0.7;">Common English</h2>
+                        <p style="line-height: 0.1;">Thu 13pm - 15pm</p>
+                    </div>
+                    <div class=""
+                        style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                        <h2>person</h2>
+                        <button
+                            style=" cursor: pointer; font-weight: bold; background-color: black; border-radius: 100%; color: white;  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; ">+</button>
+                    </div>
+                </div>
+
+                <div
+                    style="gap: 5px; display: flex; flex-direction: column; border-left: solid 6px blue; border-radius: 7px; padding-left: 5px; padding-right: 5px; ">
+                    <div class="">
+                        <h2 style="line-height: 0.7;">Speaking Club</h2>
+                        <p style="line-height: 0.1;">Thu 13pm - 15pm</p>
+                    </div>
+                    <div class=""
+                        style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                        <h2>person</h2>
+                        <button
+                            style=" cursor: pointer; font-weight: bold; background-color: black; border-radius: 100%; color: white;  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; ">+</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="last-first-section">
+
+                <div
+                    style="gap: 5px; display: flex; flex-direction: column; border-left: solid 6px orangered; border-radius: 7px; padding-left: 5px; padding-right: 5px; ">
+                    <div class="">
+                        <h2 style="line-height: 0.7;">Common English</h2>
+                        <p style="line-height: 0.1;">Thu 13pm - 15pm</p>
+                    </div>
+                    <div class=""
+                        style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                        <h2>person</h2>
+                        <button
+                            style=" cursor: pointer; font-weight: bold; background-color: black; border-radius: 100%; color: white;  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; ">+</button>
+                    </div>
+                </div>
+
+                <div
+                    style="gap: 5px; display: flex; flex-direction: column; border-left: solid 6px blue; border-radius: 7px; padding-left: 5px; padding-right: 5px; ">
+                    <div class="">
+                        <h2 style="line-height: 0.7;">Speaking Club</h2>
+                        <p style="line-height: 0.1;">Thu 13pm - 15pm</p>
+                    </div>
+                    <div class=""
+                        style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                        <h2>person</h2>
+                        <button
+                            style=" cursor: pointer; font-weight: bold; background-color: black; border-radius: 100%; color: white;  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; ">+</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>
